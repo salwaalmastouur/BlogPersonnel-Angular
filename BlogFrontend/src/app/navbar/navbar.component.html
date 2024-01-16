@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm navss" style="background: #010101">
+        <a href="/home" class="navbar-brand text-primary" style="font-size:35px; cursor:pointer;"><span class="blog text-primary">Blog Personnel</span>
+          
+          <span class="blog text-primary"></span></a>
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item"  *ngIf="!loginService.isUserLoggedIn()">
+                  <a href="#"  routerLink='/login' class="nav-link">Log In</a>
+                </li>
+                <li class="nav-item dropdown"  *ngIf="loginService.isUserLoggedIn()">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                         <span style="text-transform: capitalize">{{uName}}'s</span> Account
+                        </a>
+                        <div class="dropdown-menu" style="background: #010101">
+                          <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+                            <a href="/logout" class="nav-link">Log Out</a>
+                          </li>
+
+                          <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+                              <a href="/profile" class="nav-link">My Profile</a>
+                            </li>
+                            <li class="nav-item" *ngIf="loginService.isUserLoggedIn() && isAdmin=='Admin'">
+                                <a href="/delete" class="nav-link">Supprimer Blog</a>
+                              </li>
+                        </div>
+                </li>
+                <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+                  <a href="/blog" class="nav-link">All Blogs</a>
+                </li>
+                <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+                  <a href="/addBlog" class="nav-link">Add Blogs</a>
+                </li>
+                <li class="nav-item"  *ngIf="loginService.isUserLoggedIn()">
+                    <a href="/myblogs" class="nav-link">My Blogs</a>
+                  </li>
+                </ul>
+<!--              <form class="form-inline" action="#">-->
+<!--                <input class="form-control ml-5 mr-1" type="text" placeholder="Search for Anything">-->
+<!--                <button class="btn btn-primary" type="submit">Search</button>-->
+<!--              </form>-->
+            </nav>

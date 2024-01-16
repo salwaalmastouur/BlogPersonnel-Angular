@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="row mt-5">
+        <div class="col-sm-3 mt-1 ">
+          <div class="card ml-5 mt-5" style="background: #000000">
+            <div class="card-header">
+              <div class="container">
+                <h2 style="color:white  ;text-transform:uppercase; font-weight:bolder; font-size:25px">{{user.name}}</h2>
+              </div>
+            </div>
+            <div class="card-body">
+              <span style="text-transform:uppercase; font-weight:bolder; font-size:15px;color: green;">Phone Number: <br>{{user.mobileNo}}</span><br><br>
+              <span style="text-transform:uppercase; font-weight:bolder; font-size:15px;color: green;">email: <br>{{user.email}}</span><br><br>
+              <span style="text-transform:uppercase; font-weight:bolder; font-size:15px;color: green;">gender: <br> {{user.gender}}</span><br><br>
+            </div>
+            <div class="container">
+            
+                    
+                            <button class="btn btn-outline-success btn-block mb-2" *ngIf="isFollowing==='false'" (click)="follow(user.userId)">Follow+</button>
+             
+             
+           
+                        <button class="btn btn-outline-danger btn-block mb-2"  *ngIf="isFollowing==='true'" (click)="unfollow(user.userId)">Unfollow-</button>
+          
+            
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-9  pr-5 ">
+          <h1 class="text-center" style="color: white;font-weight:bolder;text-transform:capitalize">{{user.name}}'s Blogs</h1>
+          <div class="container mt-3" *ngIf="isFollowing==='true'">
+          <div class="container " style="border:1px solid grey" id="blogs" *ngFor="let b of blog">
+            <div class="container " *ngIf="isData">
+              <div class="container ">
+                      <h1 style="font-size:30px; color:white; text-transform: capitalize; font-weight: bolder;" class="text-center mb-5">{{b.title}}</h1>
+                      
+              </div>
+              <div class="container " >
+                  <p style="color: orange; font-size:15px; text-transform:capitalize; font-weight:bolder; font-style:italic">{{b.content}}</p>
+
+              </div>
+              <button class="btn btn-outline-danger mb-2" (click)="showComments(b.postId)">Voir Commentaire</button>
+          </div>
+          </div>
+          <div class="container" *ngIf="!isData">
+              <h1 style="color: red; font-weight:bolder;" class="text-center">Aucun Blog Trouver!</h1>
+          </div>
+        </div>
+        <div class="container mt-5" style="border:1px solid grey" *ngIf="isFollowing==='false'">
+          <h1 style="color: red; text-transform: capitalize; font-weight: bolder" class="text-center">Veuillez follow {{user.name}}pour voir le contenu.</h1>
+        </div>
+      </div>
+    </div>

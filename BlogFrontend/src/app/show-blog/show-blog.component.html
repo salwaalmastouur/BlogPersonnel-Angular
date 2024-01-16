@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="container" style="border-bottom:1px solid grey">
+<h1  class="text-center" style="color: white;font-size:50px; font-weight:bolder;">All Blogs</h1>
+    <p style="color: white; text-transform: capitalize; font-style: italic" class="text-center">People you follow</p>
+</div>
+<div class="container-fluid d-flex">
+    <div class="container" style="width: 200%">
+<div class="container mt-5 mb-2" *ngFor="let blog of blogs " >
+    <div class="container" style="border:1px solid grey"  *ngIf="checkUser(blog.userId.email)">
+    <div class="container" id="title">
+            <h1 style="font-size:30px; color:white;font-weight: bolder;" class="text-center">{{blog.title}} </h1>
+            <h3 style="color:white; font-size:15px" class="text-center">-By: {{blog.userId.name}} | {{blog.date | date}}</h3>
+    </div>
+    <div class="container mt-5" id="content">
+            <textarea class="form-control" style="border: none; background: #000000;color: orange;font-size:20px" readonly rows="3" id="comment" name="text">{{blog.content}}</textarea>
+      
+    </div>
+    <div class="container d-flex justify-content-center mb-3">
+        <button class="btn btn-outline-success mr-3 mt-2" (click)="showBlogById(blog.postId)">Voir PLus</button>
+       
+    </div>
+</div>  
+</div>
+</div>
+<div class="container mt-2">
+    <div class="container mt-5">
+        <div class="container ml-4">
+        <form class="form-inline" action="">
+            <input class="form-control mr-sm-2" type="text" name="user" placeholder="Search For Bloggers" [(ngModel)]="searchUser">
+            <button class="btn btn-outline-success" (click)="findUser()" type="submit">Search</button>
+          </form>
+        </div>
+          <div class="container mt-4"  >
+              <div class="container" *ngIf="isData">
+                <div class="container mt-2 p-2 mb-2 d-flex"*ngFor="let s of searchData">
+                        <div class="container" id="username">
+                            <h2  id="user" (click)="openUser(s.userId)">{{s.name}}</h2>
+                        </div>
+                        <div class="container" id="button">
+                                <button class=" btn btn-outline-success" (click)="openUser(s.userId)">Voir Profile</button>
+                        </div>
+                </div>
+            </div>
+            <div class="container" *ngIf="!isData">
+                <h3 class="text-center" style="color: red; font-weight:bolder; text-transform:capitalize">No user found!</h3>
+            </div>
+          </div>
+        </div>
+</div>
+</div>

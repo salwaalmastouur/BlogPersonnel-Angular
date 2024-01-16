@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 bg-dark">
+    <h2 style="font-weight: bolder; padding:5px; font-size:55px">LOGIN</h2>
+</div>
+<div class="container d-flex">
+    <div class="container mt-5" id="left" style="border-right:2px solid orange">
+        <img src="assets/loginGuy.png" alt="" style="width:90%; height:100%;border-radius: 30%"> 
+         
+    </div>
+   
+    <div class="container mt-5" id="right">
+            <form action="#">
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="email" class="form-control"  [(ngModel)]="username" id="email" name="uname">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="password" class="form-control" id="password" name="p" [(ngModel)]="password">
+                    </div>
+                      <button type="submit" class="btn btn-outline-success btn-block" (click)="Login()">Submit</button>
+                </form>
+    </div>
+</div>
+<div class="container mt-5 bg-dark">
+        <h2 class="text-center" style="font-weight: bolder; padding:10px; font-size:35px">Nouveau sur les blogs? <button class="btn btn-outline-warning btn-lg" routerLink='/signup'>Register</button> Vous-même aujourd'hui!</h2>
+    </div>
+    

@@ -1,0 +1,25 @@
+*{
+    font-family: 'Bree Serif', serif;
+
+}
+h1{
+    text-transform: capitalize;
+
+}
+p{
+    text-transform: uppercase;
+    font-style: italic;
+}
+textarea{
+    resize: none;
+    overflow: hidden;
+}
+#user{
+    color: white; font-weight:bolder;text-transform: capitalize;
+    transition: 0.3s ease-in-out;
+}
+#user:hover{
+color: orange;
+cursor: pointer;
+transition: 0.2s ease-in-out;
+}

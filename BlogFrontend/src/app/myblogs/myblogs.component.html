@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<div class="container mt-5" style=" border:1px solid grey; padding:10px;">
+    <h1 style="color:white;font-weight:bolder;">Salut {{user}}, Bienvenue dans votre espace personnel!</h1>
+    <div class="row justify-content-center">
+    <button class="btn btn-outline-success mt-2 " routerLink="/profile">Modifier Profile</button>
+    <button class="btn btn-outline-danger mt-2 ml-2" (click)="getNonPrivate()">Mes Blogs</button>
+    <button class="btn btn-outline-primary mt-2 ml-2" (click)="getPrivate()">Blogs Priver</button>
+   
+    </div>
+</div>
+<div class="container-fluid d-flex mt-5">
+    <div class="container" id="myblogs" *ngIf="!isPrivate">
+            <h1 style="color:white;font-weight:bolder;" class="text-center">My Blogs</h1>
+            <div class="container mt-3"*ngFor="let b of blog">
+                <div class="container"  style=" border:1px solid grey"  *ngIf="!b.privateBlog">
+                <div class="container mt-1"  id="title">
+                        <h1 style="font-size:30px; color:white;font-weight: bolder; text-transform:uppercase;" class="text-center">{{b.title}}</h1>
+                            <p style="color:white;text-transform: uppercase" class="text-right">{{b.date | date}}</p>
+                </div>
+                <div class="container mt-1" id="content">
+                        <p style="color:orange; font-size:17px;font-style: italic; text-transform: capitalize">{{b.content}}</p>
+                    </div>
+                <button class="btn btn-outline-success mb-2" (click)="edit(b)">Modifier Blog</button>
+                <button class="btn btn-outline-danger mb-2 ml-2" (click)="showComments(b.postId)">Afficher Comments</button>
+                <button class="btn btn-outline-primary mb-2 ml-2" (click)="makePrivate(b.postId)">Rendre Priver</button>
+                </div>
+            </div>
+    </div>
+    <div class="container" id="myblogs" *ngIf="isPrivate">
+            <h1 style="color:white;font-weight:bolder;" class="text-center"> Blogs Priver</h1>
+            <div class="container mt-3"*ngFor="let b of blog">
+                <div class="container"  style=" border:1px solid grey"  *ngIf="b.privateBlog">
+                <div class="container mt-1"  id="title">
+                        <h1 style="font-size:30px; color:white;font-weight: bolder; text-transform:uppercase;" class="text-center">{{b.title}}</h1>
+                            <p style="color:white;text-transform: uppercase" class="text-right">{{b.date | date}}</p>
+                </div>
+                <div class="container mt-1" id="content">
+                        <p style="color:orange; font-size:17px;font-style: italic; text-transform: capitalize">{{b.content}}</p>
+                    </div>
+                <button class="btn btn-outline-success mb-2" (click)="edit(b)">Modifier Blog</button>
+                <button class="btn btn-outline-danger mb-2 ml-2" (click)="showComments(b.postId)">Afficher Comments</button>
+                <button class="btn btn-outline-primary mb-2 ml-2" (click)="removePrivate(b.postId)">Remove From Private</button>
+                </div>
+            </div>
+    </div>
+    <div class="container d-flex" id="follow">
+            <div class="container" id="followers">
+                    <h1 style="color:white;font-weight:bolder;" class="text-center">Followers</h1>
+                    <div class="container mt-2">
+                        <ul *ngFor= "let fo of followers">
+                           <li><span><p id="userName" (click)="showProfile(fo.followerId.userId)">{{fo.followerId.name}}</p></span></li>
+                           
+                        </ul>
+                    </div>
+            </div>
+            <div class="container" id="followings">
+                    <h1 style="color:white;font-weight:bolder;" class="text-center">Following</h1>
+                    <div class="container mt-2">
+                        <ul *ngFor="let f of following">
+                           <li><span><p id="userName" (click)="showProfile(f.followingId.userId)">{{f.followingId.name}}</p></span></li>
+                           
+                        </ul>
+                    </div>
+            </div>
+    </div>
+</div>

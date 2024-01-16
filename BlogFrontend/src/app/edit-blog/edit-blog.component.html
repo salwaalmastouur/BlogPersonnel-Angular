@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mt-5" style="padding-bottom: 100px;">
+
+
+    <h1 class="font1 p-5 text-center" style="color: white; border:1px solid grey;padding:7px;">Modifier le Post</h1>
+
+    <!--Form-->
+    <div class="container">
+
+
+      <form action="add-product" class="was-validated">
+
+
+        <div class="form-group">
+          <label class="font-weight-bold" for="title">Modifier le Post/Titre du Blog</label>
+          <input type="text" class="form-control" id="title"  name="tit" value="{{title}}" [(ngModel)]="blog.title" required>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Veuillez remplir ce formulaire.</div>
+ 
+        </div>
+
+
+        <div class="form-group">
+          <label class="font-weight-bold" for="content">Ajouter un Post/Blog Contenu Ici</label>
+          <textarea class="form-control" id="content" placeholder="{{blog.content}}" name="content" [(ngModel)]="blog.content" required></textarea>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Veuillez remplir ce formulaire.</div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-info mt-3 mb-3 w-100" (click)="edit()">Modifier un Blog</button>
+        <button class="btn btn-outline-danger btn-block" (click)="delete(blog.postId)">Supprimer un Blog</button>
+
+
+      </form>
+    </div>
+
+</div>

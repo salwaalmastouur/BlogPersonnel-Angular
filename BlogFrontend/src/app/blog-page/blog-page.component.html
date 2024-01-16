@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container-fluid d-flex">
+<div class="container" style="width:300%">
+    <div class="container mt-5">
+            <h1 style="font-size:30px; color:white;font-weight: bolder;" class="text-center">{{blog.title}}</h1>
+            
+    </div>
+    <div class="container mt-5">
+        <p style="color: orange; font-size:25px; text-transform:capitalize; font-weight:bolder; font-style:italic">{{blog.content}}</p>
+    </div>
+</div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                    <h3  style="color: white">Auteur:</h3>
+            </div>
+        </div>
+   
+        <div class="row">
+            <div class="col">
+                    <h2 style="color: blue; font-weight: bolder; text-transform: capitalize">{{blog.userId.name}}</h2>
+            </div>
+        </div>
+   <div class="row">
+       <div class="col">
+            <div class="container mt-3">
+                    <button class="btn btn-outline-success btn-block"  (click)="showProfile(blog.userId.userId)">Voir le  Profile</button>
+                </div>
+       </div>
+   </div>
+   
+    </div>
+    </div>
+    <div class="container mt-5">
+        <h1 style="color: white;text-transform:capitalize" class="mb-2">Commentairs: {{count}}</h1>
+        <form action="" class="was-validated">
+            <div class="form-group">
+                <textarea name="comment" id="c" placeholder="Add a comment.." class="form-control" required [(ngModel)]="comments.commentContent"> </textarea>
+            </div>
+            <button class="btn btn-outline-success" (click)="addComment()">Ajouter Commentaire</button>
+        </form>
+        <div class="container mt-4" id="showComments">
+            <div class="container">
+            <div class="container mt-2 p-3" style="border:1px solid grey" id="com" *ngFor="let c of commentList">
+                <h3 style="color: green" class="mt-2">By: {{c.userId.name}} | <span style="color: white;font-style:italic;font-size:17px"> {{c.date | date}}</span></h3>
+                    <p style="color: white; margin-left:20px;font-size:20px;font-style: italic" >{{c.commentContent}}</p>
+                    <div class="row justify-content-center mb-2">
+                    <button class="btn btn-outline-danger" *ngIf="c.userId.email==currentUser" (click)="deleteComment(c.commentId)">Supprimer Commentaire</button>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </div>
